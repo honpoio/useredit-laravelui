@@ -18,7 +18,7 @@ class UserEditCommand extends Command
      *
      * @var string
      */
-    protected $description = 'hahahahahahah';
+    protected $description = 'CreateUserEdit&Withdrawal';
 
 
     protected $views = [
@@ -48,12 +48,15 @@ class UserEditCommand extends Command
         $this->exportBackend();
         
 
-        $this->info('できたンゴ.');
+        $this->info('sucsess!');
     }
 
 
 
     protected function exportRequests(){
+        if(!file_exists(app_path('Http/Requests'))){
+            mkdir(app_path('Http/Requests'));
+        }
         foreach ($this->requests as $key => $value) {     
             file_put_contents(
                 app_path('Http/Requests/'.$value),
@@ -67,8 +70,12 @@ class UserEditCommand extends Command
     {
         
         foreach ($this->views as $key => $value) {
-            $view = $this->getViewPath($value);      
+            $view = $this->getViewPath($value);
             
+            copy(
+                __DIR__.'/Auth/'.$key,
+                $view
+            );
         }
     }
 
@@ -78,6 +85,11 @@ class UserEditCommand extends Command
             app_path('Http/Controllers/Auth/UserEditController.php'),
             $this->compileControllerStub()
         );
+        file_put_contents(
+            base_path('routes/web.php'),
+            file_get_contents(__DIR__.'/Auth/auth/routes.stub'),
+            FILE_APPEND
+        );
 
     }
 
@@ -85,7 +97,6 @@ class UserEditCommand extends Command
     protected function compileRequestStub($key)
     {
         
-
         return str_replace(
             '{{namespace}}',
             $this->laravel->getNamespace(),
