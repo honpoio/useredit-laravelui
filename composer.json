@@ -1,0 +1,34 @@
+{
+    "name": "useredit/laravelui",
+    "description": "sample",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tony lea",
+            "email": "tony@devdojo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+
+    "require": {
+        "php": ">=7" 
+    },
+
+    "autoload": {
+        "psr-4": { 
+            "useredit\\laravelui\\": "src"
+        },
+
+        "classmap": [
+            "src/UserEdit_Operation_DB.php"
+        ]
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "useredit\\laravelui\\UserEditServiceProvider"
+            ]
+        }
+    }
+}
