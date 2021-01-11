@@ -36,7 +36,6 @@ php artisan useredit
 ## add these code as follows.
 - `routes/web.php`
 ```
-Route::get('/home', 'HomeController@index')->name('home');
     Route::group(['middleware' => ['auth']], function() {    
         
         Route::get('/user', 'Auth\UserEditController@UserEditForm');
