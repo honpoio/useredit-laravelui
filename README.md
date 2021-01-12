@@ -1,7 +1,7 @@
 # useredit-laravelui
 
 ## About
-this packege provides the functions,toedit and unregiste one user info
+this packege provides the functions,to edit and unregiste one user info
 
 
 ## require
